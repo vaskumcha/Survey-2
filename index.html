@@ -160,13 +160,13 @@
     </button>
   </div>
 
-  <!-- Realtime Recording Sticky Indicator -->
+  <!-- Realtime Recording Sticky Bar -->
   <div id="recBar" class="status-bar hidden">
     <div><span class="pulse"></span> <strong>ఆడియో రికార్డ్ అవుతోంది...</strong> (<span id="timer">00:00</span>)</div>
     <div id="gpsLive">GPS: ఆన్</div>
   </div>
 
-  <!-- Step-by-Step Questionnaire -->
+  <!-- Step-by-Step Form -->
   <form id="mainForm" class="hidden" onsubmit="event.preventDefault()">
 
     <div class="card">
@@ -459,7 +459,7 @@
         <input type="tel" name="q23_phone" pattern="[0-9]{10}" placeholder="10 అంకెల మొబైల్ సంఖ్య" autocomplete="off">
       </div>
 
-      <!-- Step Navigation Buttons -->
+      <!-- Navigation Actions -->
       <div class="nav-buttons">
         <button type="button" class="btn btn-prev hidden" id="btnPrev" onclick="navigateStep(-1)">⬅️ వెనుకకు</button>
         <button type="button" class="btn btn-next" id="btnNext" onclick="navigateStep(1)">ముందుకు (Next) ➡️</button>
@@ -474,7 +474,7 @@
 </div>
 
 <script>
-  // PASTE YOUR APPS SCRIPT WEB APP URL HERE:
+  // Apps Script Web App Deployment URL
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxJwFsCa-emsJruj_m7WALZ2FIYjlf9fzFtWNLA-omGE_nCj9OU090qVfn_CqUycny/exec";
 
   const TOTAL_STEPS = 23;
@@ -485,7 +485,7 @@
   let timerId = null;
   let gpsLocation = { latitude: null, longitude: null, accuracy: null };
 
-  // Fetch GPS on load
+  // 1. Live GPS Fetch
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
@@ -501,7 +501,7 @@
     );
   }
 
-  // 1. Enforce Audio Recording & Start Session
+  // 2. Start Survey Session & Audio Recording
   async function startSurveySession() {
     const surveyorEmail = document.getElementById("sEmail").value.trim();
     if (!surveyorEmail) {
@@ -513,7 +513,7 @@
     btn.disabled = true;
     btn.innerText = "మైక్రోఫోన్ కనెక్ట్ అవుతోంది...";
 
-    // Strict audio stream requirement - NO BYPASS ALLOWED
+    // Audio stream requirement - No bypass permitted
     try {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         throw new Error("మీ బ్రౌజర్ ఆడియో రికార్డింగ్‌ను సపోర్ట్ చేయదు.");
@@ -527,7 +527,7 @@
         if (e.data && e.data.size > 0) recordedChunks.push(e.data);
       };
 
-      recorder.start(1000); // Collect chunk every second to ensure data persistence
+      recorder.start(1000); // 1-second chunks
     } catch (micErr) {
       alert("సర్వే ఆడియో రికార్డింగ్ తప్పనిసరి! మైక్రోఫోన్ అనుమతి ఇవ్వకుండా సర్వే ప్రారంభించలేరు.\n\nలోపం: " + micErr.message);
       btn.disabled = false;
@@ -537,13 +537,13 @@
 
     surveyStartTime = new Date();
 
-    // UI switches
+    // UI state transitions
     document.getElementById("startScreen").classList.add("hidden");
     document.getElementById("recBar").classList.remove("hidden");
     document.getElementById("mainForm").classList.remove("hidden");
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Live Timer
+    // Duration timer
     let totalSec = 0;
     timerId = setInterval(() => {
       totalSec++;
@@ -555,11 +555,11 @@
     updateStepUI();
   }
 
-  // 2. Validate current step
+  // 3. Step validation
   function validateCurrentStep() {
     const stepEl = document.querySelector(`.q-step[data-step="${currentStep}"]`);
 
-    // Radio validation
+    // Radio button validation
     const radios = stepEl.querySelectorAll('input[type="radio"]');
     if (radios.length > 0) {
       const checked = stepEl.querySelector('input[type="radio"]:checked');
@@ -581,7 +581,7 @@
       return true;
     }
 
-    // Text & Phone validation
+    // Text & phone validation
     const textInput = stepEl.querySelector('input[type="text"], input[type="tel"]');
     if (textInput) {
       if (textInput.name === "q21_subcaste") return true; // Optional
@@ -605,7 +605,7 @@
     return true;
   }
 
-  // 3. Navigation Controls
+  // 4. Wizard Step Navigation
   function navigateStep(direction) {
     if (direction === 1) {
       if (!validateCurrentStep()) return;
@@ -654,11 +654,10 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // 4. Submission Handler
+  // 5. Submit Survey Execution
   function submitFinalSurvey() {
     if (!validateCurrentStep()) return;
 
-    // Strict validation: audio must be actively recording
     if (!recorder || recorder.state === "inactive") {
       alert("ఆడియో రికార్డింగ్ ఆగిపోయింది. సర్వేను ఆడియో లేకుండా సమర్పించలేరు.");
       return;
@@ -690,7 +689,7 @@
     if (timerId) clearInterval(timerId);
   }
 
-  // 5. Send to Google Sheets via POST
+  // 6. Cross-domain HTTP POST to Apps Script
   function sendToServer(audioBase64, audioType, endTime, duration, q5Checked, q7Checked) {
     const form = document.getElementById("mainForm");
     const formData = new FormData(form);
@@ -714,10 +713,11 @@
     payload.audioBase64 = audioBase64;
     payload.audioMimeType = audioType;
 
+    // text/plain avoids CORS preflight failures when sending to Google Apps Script
     fetch(APPS_SCRIPT_URL, {
       method: "POST",
       mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload)
     })
     .then(() => {

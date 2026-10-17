@@ -2,7 +2,7 @@
 <html lang="te">
 <head>
   <meta charset="UTF-8">
-  <title>గ్రేటర్ విశాఖ మున్సిపల్ కార్పొరేషన్ (GVMC) ఎన్నికల ప్రజాభిప్రాయ సర్వే - 2026</title>
+  <title>గ్రేటర్ విశాఖ మున్సిపల్ కార్పొరేషన్ (GVMC) ఎన్నికల ప్రజాభిప్రాయ సర్వే – 2026 | Ward 59</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
     :root {
@@ -23,6 +23,28 @@
       margin-bottom: 14px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       border-top: 5px solid var(--primary);
+    }
+    
+    .intro-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #334155;
+      background: #f1f5f9;
+      padding: 14px;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .section-badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #3730a3;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
     }
     
     .progress-wrapper { margin-bottom: 16px; }
@@ -56,7 +78,7 @@
 
     .q-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 14px; line-height: 1.45; }
     .q-sub { font-size: 0.85rem; color: #64748b; margin-top: -8px; margin-bottom: 12px; }
-    .options { display: flex; flex-direction: column; gap: 9px; }
+    .options { display: flex; flex-direction: column; gap: 9px; max-height: 420px; overflow-y: auto; padding-right: 4px; }
     .opt-label {
       display: flex;
       align-items: center;
@@ -139,42 +161,50 @@
 
 <div class="container">
 
-  <!-- Welcome / Pre-Survey Screen -->
+  <!-- ప్రారంభ స్క్రీన్ / సర్వేయర్ వివరాలు -->
   <div class="card" id="startScreen" style="border-top-color: #16a34a;">
-    <h2 style="margin-top:0; font-size:1.25rem; color:#1e3a8a; line-height: 1.4;">
-      గ్రేటర్ విశాఖ మున్సిపల్ కార్పొరేషన్ (GVMC) ఎన్నికల<br>ప్రజాభిప్రాయ సర్వే - 2026
+    <h2 style="margin-top:0; font-size:1.25rem; color:#1e3a8a; line-height: 1.4; text-align: center;">
+      గ్రేటర్ విశాఖ మున్సిపల్ కార్పొరేషన్ (GVMC)<br>
+      ఎన్నికల ప్రజాభిప్రాయ సర్వే – 2026<br>
+      <span style="font-size: 1rem; color: #475569;">Ward Number: 59</span>
     </h2>
-    <p style="font-size:0.9rem; color:#64748b; line-height: 1.5;">
-      ఈ సర్వే ప్రారంభించడానికి <strong>మైక్రోఫోన్ ఆడియో రికార్డింగ్ మరియు GPS తప్పనిసరి</strong>. మైక్రోఫోన్ అనుమతి ఇవ్వకుండా సర్వే ప్రారంభించబడదు.
-    </p>
+
+    <div class="intro-text">
+      <strong>సర్వే పరిచయం:</strong><br><br>
+      నమస్కారం అండి! నా పేరు __________. నేను <strong>Pulse Today</strong> సర్వే సంస్థ తరఫున మీ ప్రాంతంలో ప్రజాభిప్రాయ సర్వే నిర్వహిస్తున్నాను.<br><br>
+      రాబోయే GVMC ఎన్నికలకు సంబంధించి ప్రజల అభిప్రాయాలను తెలుసుకోవడం ఈ సర్వే ముఖ్య ఉద్దేశం. ఇందులో భాగంగా మీ ప్రాంతంలోని ప్రస్తుత సమస్యలు, అభివృద్ధి, స్థానిక నాయకత్వం, ప్రజాప్రతినిధుల పనితీరు మరియు ఎన్నికలకు సంబంధించిన కొన్ని ప్రశ్నలు అడుగుతాము.<br><br>
+      మీరు ఇచ్చే సమాధానాలు సర్వే విశ్లేషణకు ఉపయోగపడతాయి. దయచేసి మీ అభిప్రాయాలను స్వేచ్ఛగా తెలియజేయండి.
+    </div>
     
     <div style="margin-bottom: 14px;">
-      <label style="font-weight: 600; font-size: 0.9rem;">సర్వేయర్ ఈమెయిల్:</label>
+      <label style="font-weight: 600; font-size: 0.9rem;">సర్వేయర్ ఈమెయిల్ ఐడీ (Surveyor Email):</label>
       <input type="text" id="sEmail" placeholder="సర్వేయర్ Email ID నమోదు చేయండి" style="margin-top: 6px;">
     </div>
     
-    <div id="gpsStatusText" style="font-size: 0.85rem; color: #475569; margin-bottom: 18px;">
-      GPS స్థితి: లొకేషన్ సేకరించబడుతోంది...
+    <div id="gpsStatusText" style="font-size: 0.85rem; color: #475569; margin-bottom: 10px;">
+      📍 GPS స్థితి: లొకేషన్ సేకరించబడుతోంది...
+    </div>
+    <div id="micStatusText" style="font-size: 0.85rem; color: #475569; margin-bottom: 18px;">
+      🎙️ ఆడియో స్థితి: అనుమతి కొరకు సిద్ధంగా ఉంది
     </div>
 
     <button type="button" class="btn btn-green" id="btnStart" onclick="startSurveySession()">
-      🎙️ మైక్రోఫోన్ అనుమతించి సర్వే ప్రారంభించండి
+      🎙️ సర్వే & ఆడియో రికార్డింగ్ ప్రారంభించండి (Start)
     </button>
   </div>
 
-  <!-- Realtime Recording Sticky Indicator -->
+  <!-- ఆడియో రికార్డింగ్ & GPS లైవ్ బార్ -->
   <div id="recBar" class="status-bar hidden">
     <div><span class="pulse"></span> <strong>ఆడియో రికార్డ్ అవుతోంది...</strong> (<span id="timer">00:00</span>)</div>
     <div id="gpsLive">GPS: ఆన్</div>
   </div>
 
-  <!-- Step-by-Step Questionnaire Form -->
+  <!-- ప్రశ్నల ఫారమ్ (ఒక్కొక్కటిగా) -->
   <form id="mainForm" class="hidden" onsubmit="event.preventDefault()">
-
     <div class="card">
       <div class="progress-wrapper">
         <div class="progress-meta">
-          <span id="stepCounterText">ప్రశ్న 1 / 20</span>
+          <span id="stepCounterText">ప్రశ్న 1 / 22</span>
           <span id="stepPercentText">5%</span>
         </div>
         <div class="progress-track">
@@ -182,9 +212,11 @@
         </div>
       </div>
 
+      <!-- భాగం – 1 -->
       <!-- Q1 -->
       <div class="q-step active" data-step="1">
-        <div class="q-title">1. మీరు ఈ వార్డులో ఓటు హక్కును కలిగి ఉన్నారా?</div>
+        <span class="section-badge">భాగం – 1: స్థానిక సమస్యలు మరియు ప్రజాప్రతినిధుల పనితీరు</span>
+        <div class="q-title">1. మీరు ఈ వార్డులో ఓటు హక్కు కలిగి ఉన్నారా?</div>
         <div class="options">
           <label class="opt-label"><input type="radio" name="q1" value="అవును"> అవును</label>
           <label class="opt-label"><input type="radio" name="q1" value="కాదు"> కాదు</label>
@@ -193,25 +225,26 @@
 
       <!-- Q2 (Multi-select) -->
       <div class="q-step" data-step="2">
+        <span class="section-badge">భాగం – 1: స్థానిక సమస్యలు మరియు ప్రజాప్రతినిధుల పనితీరు</span>
         <div class="q-title">2. మీ వార్డులో ప్రస్తుతం ఉన్న ప్రధాన సమస్యలు ఏమిటి?</div>
         <div class="q-sub">(ఒకటి కంటే ఎక్కువ ఎంపిక చేసుకోవచ్చు)</div>
         <div class="options">
-          <label class="opt-label"><input type="checkbox" name="q2" value="రోడ్లు"> రోడ్లు</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="డ్రైనేజ్"> డ్రైనేజ్</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="తాగునీరు"> తాగునీరు</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="వీధి దీపాలు"> వీధి దీపాలు</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="చెత్త సేకరణ"> చెత్త సేకరణ</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="ట్రాఫిక్"> ట్రాఫిక్</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="దోమలు"> దోమలు</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="ప్రభుత్వ పథకాలు"> ప్రభుత్వ పథకాలు</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="కరెంటు స్తంభాలు"> కరెంటు స్తంభాలు</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="వీధి కుక్కలు"> వీధి కుక్కలు</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="రేషన్ బియ్యం"> రేషన్ బియ్యం</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="Pension"> Pension</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="LPG Gas Subsidy"> LPG Gas Subsidy</label>
-          <label class="opt-label"><input type="checkbox" name="q2" value="NA (సమస్యలు లేవు)"> NA (సమస్యలు లేవు)</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="రోడ్ల సమస్య"> రోడ్ల సమస్య</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="డ్రైనేజ్ సమస్య"> డ్రైనేజ్ సమస్య</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="తాగునీటి సమస్య"> తాగునీటి సమస్య</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="వీధి దీపాల సమస్య"> వీధి దీపాల సమస్య</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="చెత్త సేకరణ సమస్య"> చెత్త సేకరణ సమస్య</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="ట్రాఫిక్ సమస్య"> ట్రాఫిక్ సమస్య</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="దోమల సమస్య"> దోమల సమస్య</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="ప్రభుత్వ పథకాలకు సంబంధించిన సమస్యలు"> ప్రభుత్వ పథకాలకు సంబంధించిన సమస్యలు</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="కరెంటు స్తంభాలకు సంబంధించిన సమస్యలు"> కరెంటు స్తంభాలకు సంబంధించిన సమస్యలు</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="వీధి కుక్కల సమస్య"> వీధి కుక్కల సమస్య</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="రేషన్ బియ్యానికి సంబంధించిన సమస్యలు"> రేషన్ బియ్యానికి సంబంధించిన సమస్యలు</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="పెన్షన్‌కు సంబంధించిన సమస్యలు"> పెన్షన్‌కు సంబంధించిన సమస్యలు</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="LPG గ్యాస్ సబ్సిడీకి సంబంధించిన సమస్యలు"> LPG గ్యాస్ సబ్సిడీకి సంబంధించిన సమస్యలు</label>
+          <label class="opt-label"><input type="checkbox" name="q2" value="ప్రధాన సమస్యలేవీ లేవు"> ప్రధాన సమస్యలేవీ లేవు</label>
           <label class="opt-label">
-            <input type="checkbox" id="q2_other_chk" value="Other"> Other:
+            <input type="checkbox" id="q2_other_chk" value="ఇతర సమస్యలు"> ఇతర సమస్యలు:
           </label>
           <input type="text" id="q2_other_text" placeholder="ఇతర సమస్యను ఇక్కడ టైప్ చేయండి" style="display:none; margin-top:4px;" autocomplete="off">
         </div>
@@ -219,153 +252,268 @@
 
       <!-- Q3 -->
       <div class="q-step" data-step="3">
-        <div class="q-title">3. గత 5 సంవత్సరాలలో మీ వార్డుకి కార్పొరేటర్ గా పని చేసిన అల్లు శంకర్రావు గారి పని తీరుపై మీ అభిప్రాయం ఏమిటి?</div>
+        <span class="section-badge">భాగం – 1: స్థానిక సమస్యలు మరియు ప్రజాప్రతినిధుల పనితీరు</span>
+        <div class="q-title">3. గత ఐదేళ్లలో మీ వార్డు కార్పొరేటర్‌గా పనిచేసిన అల్లు శంకర్రావు గారి పనితీరుపై మీ అభిప్రాయం ఏమిటి?</div>
         <div class="options">
-          <label class="opt-label"><input type="radio" name="q3" value="చాలా బాగుంది"> 1. చాలా బాగుంది</label>
-          <label class="opt-label"><input type="radio" name="q3" value="బాగుంది"> 2. బాగుంది</label>
-          <label class="opt-label"><input type="radio" name="q3" value="పర్వాలేదు"> 3. పర్వాలేదు</label>
-          <label class="opt-label"><input type="radio" name="q3" value="బాగోలేదు"> 4. బాగోలేదు</label>
+          <label class="opt-label"><input type="radio" name="q3" value="చాలా బాగుంది"> చాలా బాగుంది</label>
+          <label class="opt-label"><input type="radio" name="q3" value="బాగుంది"> బాగుంది</label>
+          <label class="opt-label"><input type="radio" name="q3" value="పర్వాలేదు"> పర్వాలేదు</label>
+          <label class="opt-label"><input type="radio" name="q3" value="బాగోలేదు"> బాగోలేదు</label>
+          <label class="opt-label"><input type="radio" name="q3" value="తెలియదు / అభిప్రాయం లేదు"> తెలియదు / అభిప్రాయం లేదు</label>
         </div>
       </div>
 
       <!-- Q4 -->
       <div class="q-step" data-step="4">
-        <div class="q-title">4. మీ వార్డులో స్థానికంగా మీకు అందుబాటులో ఉండే TDP నాయకుడు ఎవరు?</div>
-        <input type="text" name="q4" placeholder="TDP నాయకుడి పేరు టైప్ చేయండి" autocomplete="off">
+        <span class="section-badge">భాగం – 1: స్థానిక సమస్యలు మరియు ప్రజాప్రతినిధుల పనితీరు</span>
+        <div class="q-title">4. మీ వార్డులో తెలుగుదేశం పార్టీ (TDP) తరఫున ప్రజలకు అందుబాటులో ఉండే స్థానిక నాయకుడు ఎవరు?</div>
+        <input type="text" name="q4" placeholder="నాయకుడి పేరు రాయండి" autocomplete="off">
       </div>
 
       <!-- Q5 -->
       <div class="q-step" data-step="5">
-        <div class="q-title">5. మీ వార్డులో స్థానికంగా మీకు అందుబాటులో ఉండే YSRCP నాయకుడు ఎవరు?</div>
-        <input type="text" name="q5" placeholder="YSRCP నాయకుడి పేరు టైప్ చేయండి" autocomplete="off">
+        <span class="section-badge">భాగం – 1: స్థానిక సమస్యలు మరియు ప్రజాప్రతినిధుల పనితీరు</span>
+        <div class="q-title">5. మీ వార్డులో వైఎస్సార్ కాంగ్రెస్ పార్టీ (YSRCP) తరఫున ప్రజలకు అందుబాటులో ఉండే స్థానిక నాయకుడు ఎవరు?</div>
+        <input type="text" name="q5" placeholder="నాయకుడి పేరు రాయండి" autocomplete="off">
       </div>
 
       <!-- Q6 -->
       <div class="q-step" data-step="6">
-        <div class="q-title">6. మీ వార్డులో స్థానికంగా మీకు అందుబాటులో ఉండే Janasena నాయకుడు ఎవరు?</div>
-        <input type="text" name="q6" placeholder="Janasena నాయకుడి పేరు టైప్ చేయండి" autocomplete="off">
+        <span class="section-badge">భాగం – 1: స్థానిక సమస్యలు మరియు ప్రజాప్రతినిధుల పనితీరు</span>
+        <div class="q-title">6. మీ వార్డులో జనసేన పార్టీ (Jana Sena) తరఫున ప్రజలకు అందుబాటులో ఉండే స్థానిక నాయకుడు ఎవరు?</div>
+        <input type="text" name="q6" placeholder="నాయకుడి పేరు రాయండి" autocomplete="off">
       </div>
 
       <!-- Q7 -->
       <div class="q-step" data-step="7">
-        <div class="q-title" style="color: #b91c1c;">7. ప్రస్తుత మీ ఎమ్మెల్యే విష్ణుకుమార్ రాజు గారి పనితీరు ఎలా ఉందని మీరు భావిస్తున్నారు?</div>
-        <div class="options">
-          <label class="opt-label"><input type="radio" name="q7" value="చాలా బాగుంది"> 1. చాలా బాగుంది</label>
-          <label class="opt-label"><input type="radio" name="q7" value="బాగుంది"> 2. బాగుంది</label>
-          <label class="opt-label"><input type="radio" name="q7" value="పర్వాలేదు"> 3. పర్వాలేదు</label>
-          <label class="opt-label"><input type="radio" name="q7" value="బాగోలేదు"> 4. బాగోలేదు</label>
-        </div>
+        <span class="section-badge">భాగం – 1: స్థానిక సమస్యలు మరియు ప్రజాప్రతినిధుల పనితీరు</span>
+        <div class="q-title">7. మీ వార్డులో భారతీయ జనతా పార్టీ (BJP) తరఫున ప్రజలకు అందుబాటులో ఉండే స్థానిక నాయకుడు ఎవరు?</div>
+        <input type="text" name="q7" placeholder="నాయకుడి పేరు రాయండి" autocomplete="off">
       </div>
 
       <!-- Q8 -->
       <div class="q-step" data-step="8">
-        <div class="q-title">8. ప్రస్తుతం రాష్ట్రంలో అధికారంలో ఉన్న తెలుగుదేశం+జనసేన+బీజేపీ ప్రభుత్వ పనితీరు ఎలా ఉందని మీరు భావిస్తున్నారు?</div>
+        <span class="section-badge">భాగం – 1: స్థానిక సమస్యలు మరియు ప్రజాప్రతినిధుల పనితీరు</span>
+        <div class="q-title" style="color:#b91c1c;">8. మీ నియోజకవర్గ ఎమ్మెల్యే విష్ణు కుమార్ రాజు గారి పనితీరుపై మీ అభిప్రాయం ఏమిటి?</div>
         <div class="options">
-          <label class="opt-label"><input type="radio" name="q8" value="చాలా బాగుంది"> 1. చాలా బాగుంది</label>
-          <label class="opt-label"><input type="radio" name="q8" value="బాగుంది"> 2. బాగుంది</label>
-          <label class="opt-label"><input type="radio" name="q8" value="పర్వాలేదు"> 3. పర్వాలేదు</label>
-          <label class="opt-label"><input type="radio" name="q8" value="బాగోలేదు"> 4. బాగోలేదు</label>
+          <label class="opt-label"><input type="radio" name="q8" value="చాలా బాగుంది"> చాలా బాగుంది</label>
+          <label class="opt-label"><input type="radio" name="q8" value="బాగుంది"> బాగుంది</label>
+          <label class="opt-label"><input type="radio" name="q8" value="పర్వాలేదు"> పర్వాలేదు</label>
+          <label class="opt-label"><input type="radio" name="q8" value="బాగోలేదు"> బాగోలేదు</label>
+          <label class="opt-label"><input type="radio" name="q8" value="తెలియదు / అభిప్రాయం లేదు"> తెలియదు / అభిప్రాయం లేదు</label>
         </div>
       </div>
 
       <!-- Q9 -->
       <div class="q-step" data-step="9">
-        <div class="q-title">9. ఇప్పుడు జరగబోయే మున్సిపల్ ఎన్నికల్లో మీ వార్డులో ఏ పార్టీ గెలుస్తుందని మీరు అనుకుంటున్నారు?</div>
+        <span class="section-badge">భాగం – 1: స్థానిక సమస్యలు మరియు ప్రజాప్రతినిధుల పనితీరు</span>
+        <div class="q-title">9. ప్రస్తుతం రాష్ట్రంలో ఉన్న TDP–జనసేన–BJP కూటమి ప్రభుత్వ పనితీరుపై మీ అభిప్రాయం ఏమిటి?</div>
         <div class="options">
-          <label class="opt-label"><input type="radio" name="q9" value="TDP కూటమి"> 1. TDP కూటమి</label>
-          <label class="opt-label"><input type="radio" name="q9" value="YSRCP"> 2. YSRCP</label>
-          <label class="opt-label"><input type="radio" name="q9" value="చెప్పలేను"> 3. చెప్పలేను</label>
+          <label class="opt-label"><input type="radio" name="q9" value="చాలా బాగుంది"> చాలా బాగుంది</label>
+          <label class="opt-label"><input type="radio" name="q9" value="బాగుంది"> బాగుంది</label>
+          <label class="opt-label"><input type="radio" name="q9" value="పర్వాలేదు"> పర్వాలేదు</label>
+          <label class="opt-label"><input type="radio" name="q9" value="బాగోలేదు"> బాగోలేదు</label>
+          <label class="opt-label"><input type="radio" name="q9" value="తెలియదు / అభిప్రాయం లేదు"> తెలియదు / అభిప్రాయం లేదు</label>
         </div>
       </div>
 
+      <!-- భాగం – 2 -->
       <!-- Q10 -->
       <div class="q-step" data-step="10">
-        <div class="q-title">10. ఇప్పుడు జరగబోయే GVMC ఎన్నికల్లో మీరు ఎవరికి ఓటు వేయడానికి ఎక్కువ అవకాశం ఉంది?</div>
-        <input type="text" name="q10" placeholder="వ్యక్తి లేదా పార్టీ పేరు టైప్ చేయండి" autocomplete="off">
+        <span class="section-badge">భాగం – 2: రాబోయే ఎన్నికలపై ప్రజాభిప్రాయం</span>
+        <div class="q-title">10. రాబోయే GVMC ఎన్నికల్లో మీ వార్డులో ఏ పార్టీ లేదా కూటమి గెలిచే అవకాశం ఉందని మీరు భావిస్తున్నారు?</div>
+        <div class="options">
+          <label class="opt-label"><input type="radio" name="q10" value="TDP–జనసేన–BJP కూటమి"> TDP–జనసేన–BJP కూటమి</label>
+          <label class="opt-label"><input type="radio" name="q10" value="వైఎస్సార్ కాంగ్రెస్ పార్టీ (YSRCP)"> వైఎస్సార్ కాంగ్రెస్ పార్టీ (YSRCP)</label>
+          <label class="opt-label"><input type="radio" name="q10" value="ఇతర పార్టీ / స్వతంత్ర అభ్యర్థి"> ఇతర పార్టీ / స్వతంత్ర అభ్యర్థి</label>
+          <label class="opt-label"><input type="radio" name="q10" value="చెప్పలేను / ఇంకా నిర్ణయించుకోలేదు"> చెప్పలేను / ఇంకా నిర్ణయించుకోలేదు</label>
+        </div>
       </div>
 
       <!-- Q11 -->
       <div class="q-step" data-step="11">
-        <div class="q-title">11. ప్రస్తుతం TDP కూటమి ప్రభుత్వం పనితీరు బాగుందా లేక గత YSRCP ప్రభుత్వ పనితీరు బాగుందా?</div>
+        <span class="section-badge">భాగం – 2: రాబోయే ఎన్నికలపై ప్రజాభిప్రాయం</span>
+        <div class="q-title">11. రాబోయే GVMC ఎన్నికల్లో కార్పొరేటర్‌గా ఈ క్రింది వారిలో మీరు ఎవరిని ఎన్నుకోవడానికి ఎక్కువ అవకాశం ఉంది?</div>
         <div class="options">
-          <label class="opt-label"><input type="radio" name="q11" value="TDP కూటమి"> 1. TDP కూటమి</label>
-          <label class="opt-label"><input type="radio" name="q11" value="YSRCP"> 2. YSRCP</label>
-          <label class="opt-label"><input type="radio" name="q11" value="Others"> 3. Others</label>
+          <label class="opt-label"><input type="radio" name="q11" value="యడ్ల నళిని – TDP కూటమి అభ్యర్థి"> యడ్ల నళిని – TDP కూటమి అభ్యర్థి</label>
+          <label class="opt-label"><input type="radio" name="q11" value="అల్లు వెంకట సత్యశ్రీ – YSRCP అభ్యర్థి"> అల్లు వెంకట సత్యశ్రీ – YSRCP అభ్యర్థి</label>
+          <label class="opt-label"><input type="radio" name="q11" value="చెప్పలేను / ఇంకా నిర్ణయించుకోలేదు"> చెప్పలేను / ఇంకా నిర్ణయించుకోలేదు</label>
+          <label class="opt-label"><input type="radio" name="q11" id="q11_ind_opt" value="స్వతంత్ర అభ్యర్థి"> స్వతంత్ర అభ్యర్థి:</label>
+          <input type="text" id="q11_ind_text" placeholder="స్వతంత్ర అభ్యర్థి పేరు రాయండి" style="display:none; margin-top:4px;" autocomplete="off">
         </div>
       </div>
 
       <!-- Q12 -->
       <div class="q-step" data-step="12">
-        <div class="q-title">12. రేపు గెలవబోయే కార్పొరేటర్ ద్వారా మీరు ఇక్కడ జరగాలి అనుకుంటున్న పనులు ఏమిటి?</div>
-        <input type="text" name="q12" placeholder="జరగాల్సిన పనుల వివరాలు టైప్ చేయండి" autocomplete="off">
-      </div>
-
-      <!-- Voter Details: Q13 to Q20 -->
-      <div class="q-step" data-step="13">
-        <div class="q-title">13. మీ ప్రాంతం / మీ కాలనీ పేరు</div>
-        <input type="text" name="q13_colony" placeholder="కాలనీ లేదా ప్రాంతం పేరు" autocomplete="off">
-      </div>
-
-      <div class="q-step" data-step="14">
-        <div class="q-title">14. మీ పేరు</div>
-        <input type="text" name="q14_name" placeholder="ఓటరు పూర్తి పేరు" autocomplete="off">
-      </div>
-
-      <div class="q-step" data-step="15">
-        <div class="q-title">15. మీ వయస్సు</div>
+        <span class="section-badge">భాగం – 2: రాబోయే ఎన్నికలపై ప్రజాభిప్రాయం</span>
+        <div class="q-title">12. రాబోయే GVMC ఎన్నికల తర్వాత విశాఖపట్నం మేయర్‌గా ఎవరు ఎన్నికయ్యే అవకాశం ఉందని మీరు భావిస్తున్నారు?</div>
         <div class="options">
-          <label class="opt-label"><input type="radio" name="q15_age" value="18–24"> 18–24</label>
-          <label class="opt-label"><input type="radio" name="q15_age" value="25–34"> 25–34</label>
-          <label class="opt-label"><input type="radio" name="q15_age" value="35–44"> 35–44</label>
-          <label class="opt-label"><input type="radio" name="q15_age" value="45–54"> 45–54</label>
-          <label class="opt-label"><input type="radio" name="q15_age" value="55–64"> 55–64</label>
-          <label class="opt-label"><input type="radio" name="q15_age" value="65+"> 65+</label>
-          <label class="opt-label"><input type="radio" name="q15_age" value="చెప్పడానికి ఇష్టపడటం లేదు"> చెప్పడానికి ఇష్టపడటం లేదు</label>
+          <label class="opt-label"><input type="radio" name="q12" value="ముక్కా శ్రావణి – TDP కూటమి అభ్యర్థి"> ముక్కా శ్రావణి – TDP కూటమి అభ్యర్థి</label>
+          <label class="opt-label"><input type="radio" name="q12" value="వరుదు కల్యాణి – YSRCP అభ్యర్థి"> వరుదు కల్యాణి – YSRCP అభ్యర్థి</label>
+          <label class="opt-label"><input type="radio" name="q12" value="చెప్పలేను / ఇంకా నిర్ణయించుకోలేదు"> చెప్పలేను / ఇంకా నిర్ణయించుకోలేదు</label>
+          <label class="opt-label"><input type="radio" name="q12" id="q12_other_opt" value="ఇతర అభ్యర్థి / పార్టీ"> ఇతర అభ్యర్థి / పార్టీ:</label>
+          <input type="text" id="q12_other_text" placeholder="ఇతర అభ్యర్థి లేదా పార్టీ పేరు రాయండి" style="display:none; margin-top:4px;" autocomplete="off">
         </div>
       </div>
 
+      <!-- Q13 -->
+      <div class="q-step" data-step="13">
+        <span class="section-badge">భాగం – 2: రాబోయే ఎన్నికలపై ప్రజాభిప్రాయం</span>
+        <div class="q-title">13. గత YSRCP ప్రభుత్వంతో పోలిస్తే, ప్రస్తుతం ఉన్న TDP–జనసేన–BJP కూటమి ప్రభుత్వ పనితీరు మీకు ఎలా అనిపిస్తోంది?</div>
+        <div class="options">
+          <label class="opt-label"><input type="radio" name="q13" value="ప్రస్తుత TDP కూటమి ప్రభుత్వం మెరుగ్గా పనిచేస్తోంది"> ప్రస్తుత TDP కూటమి ప్రభుత్వం మెరుగ్గా పనిచేస్తోంది</label>
+          <label class="opt-label"><input type="radio" name="q13" value="గత YSRCP ప్రభుత్వం మెరుగ్గా పనిచేసింది"> గత YSRCP ప్రభుత్వం మెరుగ్గా పనిచేసింది</label>
+          <label class="opt-label"><input type="radio" name="q13" value="రెండు ప్రభుత్వాల పనితీరు దాదాపు ఒకేలా ఉంది"> రెండు ప్రభుత్వాల పనితీరు దాదాపు ఒకేలా ఉంది</label>
+          <label class="opt-label"><input type="radio" name="q13" value="చెప్పలేను / అభిప్రాయం లేదు"> చెప్పలేను / అభిప్రాయం లేదు</label>
+          <label class="opt-label"><input type="radio" name="q13" id="q13_other_opt" value="ఇతర అభిప్రాయం"> ఇతర అభిప్రాయం:</label>
+          <input type="text" id="q13_other_text" placeholder="మీ అభిప్రాయాన్ని రాయండి" style="display:none; margin-top:4px;" autocomplete="off">
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="q-step" data-step="14">
+        <span class="section-badge">భాగం – 2: రాబోయే ఎన్నికలపై ప్రజాభిప్రాయం</span>
+        <div class="q-title">14. మీ వార్డులో గెలిచే కార్పొరేటర్ ఏయే పనులకు ప్రాధాన్యత ఇవ్వాలని మీరు కోరుకుంటున్నారు?</div>
+        <input type="text" name="q14" placeholder="ప్రాధాన్యత ఇవ్వాల్సిన పనుల వివరాలు రాయండి" autocomplete="off">
+      </div>
+
+      <!-- భాగం – 3 -->
+      <!-- Q15 -->
+      <div class="q-step" data-step="15">
+        <span class="section-badge">భాగం – 3: వ్యక్తిగత వివరాలు</span>
+        <div class="q-title">15. మీ పేరు:</div>
+        <input type="text" name="q15_name" placeholder="ఓటరు పూర్తి పేరు రాయండి" autocomplete="off">
+      </div>
+
+      <!-- Q16 -->
       <div class="q-step" data-step="16">
-        <div class="q-title">16. మీ లింగం</div>
+        <span class="section-badge">భాగం – 3: వ్యక్తిగత వివరాలు</span>
+        <div class="q-title">16. మీ లింగం:</div>
         <div class="options">
           <label class="opt-label"><input type="radio" name="q16_gender" value="పురుషుడు"> పురుషుడు</label>
-          <label class="opt-label"><input type="radio" name="q16_gender" value="మహిళ"> మహిళ</label>
-          <label class="opt-label"><input type="radio" name="q16_gender" value="ఇతర"> ఇతర</label>
-          <label class="opt-label"><input type="radio" name="q16_gender" value="చెప్పడానికి ఇష్టపడటం లేదు"> చెప్పడానికి ఇష్టపడటం లేదు</label>
+          <label class="opt-label"><input type="radio" name="q16_gender" value="స్త్రీ"> స్త్రీ</label>
         </div>
       </div>
 
+      <!-- Q17 -->
       <div class="q-step" data-step="17">
-        <div class="q-title">17. మీ కులం</div>
+        <span class="section-badge">భాగం – 3: వ్యక్తిగత వివరాలు</span>
+        <div class="q-title">17. మీ వయస్సు:</div>
         <div class="options">
-          <label class="opt-label"><input type="radio" name="q17_caste" value="OC"> OC</label>
-          <label class="opt-label"><input type="radio" name="q17_caste" value="BC-A"> BC-A</label>
-          <label class="opt-label"><input type="radio" name="q17_caste" value="BC-B"> BC-B</label>
-          <label class="opt-label"><input type="radio" name="q17_caste" value="BC-C"> BC-C</label>
-          <label class="opt-label"><input type="radio" name="q17_caste" value="BC-D"> BC-D</label>
-          <label class="opt-label"><input type="radio" name="q17_caste" value="BC-E"> BC-E</label>
-          <label class="opt-label"><input type="radio" name="q17_caste" value="SC"> SC</label>
-          <label class="opt-label"><input type="radio" name="q17_caste" value="ST"> ST</label>
-          <label class="opt-label"><input type="radio" name="q17_caste" value="చెప్పడానికి ఇష్టపడటం లేదు"> చెప్పడానికి ఇష్టపడటం లేదు</label>
+          <label class="opt-label"><input type="radio" name="q17_age" value="18–25 సంవత్సరాలు"> 18–25 సంవత్సరాలు</label>
+          <label class="opt-label"><input type="radio" name="q17_age" value="26–35 సంవత్సరాలు"> 26–35 సంవత్సరాలు</label>
+          <label class="opt-label"><input type="radio" name="q17_age" value="36–45 సంవత్సరాలు"> 36–45 సంవత్సరాలు</label>
+          <label class="opt-label"><input type="radio" name="q17_age" value="46–55 సంవత్సరాలు"> 46–55 సంవత్సరాలు</label>
+          <label class="opt-label"><input type="radio" name="q17_age" value="56–65 సంవత్సరాలు"> 56–65 సంవత్సరాలు</label>
+          <label class="opt-label"><input type="radio" name="q17_age" value="66 సంవత్సరాలు లేదా అంతకంటే ఎక్కువ"> 66 సంవత్సరాలు లేదా అంతకంటే ఎక్కువ</label>
         </div>
       </div>
 
+      <!-- Q18 -->
       <div class="q-step" data-step="18">
-        <div class="q-title">18. మీ ఉప కులం</div>
-        <div class="q-sub">(ఐచ్ఛికం - సమాచారం లేకపోతే నేరుగా ముందుకు వెళ్లవచ్చు)</div>
-        <input type="text" name="q18_subcaste" placeholder="ఉప కులం వ్రాయండి (Optional)" autocomplete="off">
+        <span class="section-badge">భాగం – 3: వ్యక్తిగత వివరాలు</span>
+        <div class="q-title">18. మీ వృత్తి ఏమిటి?</div>
+        <div class="options">
+          <label class="opt-label"><input type="radio" name="q18_prof" value="న్యాయవాది (Advocate)"> న్యాయవాది (Advocate)</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="వ్యవసాయ కూలీ"> వ్యవసాయ కూలీ</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="అంగన్‌వాడీ ఉద్యోగి"> అంగన్‌వాడీ ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="ఆటో డ్రైవర్"> ఆటో డ్రైవర్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="బ్యాంకు ఉద్యోగి"> బ్యాంకు ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="మంగలి"> మంగలి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="బీడీ కార్మికుడు"> బీడీ కార్మికుడు</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="వ్యాపారి / స్వయం ఉపాధి"> వ్యాపారి / స్వయం ఉపాధి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="టాక్సీ డ్రైవర్"> టాక్సీ డ్రైవర్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="వడ్రంగి"> వడ్రంగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="ఇంటి పనులు చేసే ఉద్యోగి"> ఇంటి పనులు చేసే ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="నిర్మాణ రంగ కార్మికుడు"> నిర్మాణ రంగ కార్మికుడు</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="వంట మనిషి"> వంట మనిషి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="రోజువారీ కూలీ"> రోజువారీ కూలీ</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="డెలివరీ ఉద్యోగి"> డెలివరీ ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="వైద్యుడు"> వైద్యుడు</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="ఎలక్ట్రీషియన్"> ఎలక్ట్రీషియన్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="రైతు"> రైతు</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="మత్స్యకారుడు"> మత్స్యకారుడు</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="ప్రభుత్వ ఉద్యోగి"> ప్రభుత్వ ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="ప్రైవేట్ ఉద్యోగి"> ప్రైవేట్ ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="IT ఉద్యోగి"> IT ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="ఉపాధ్యాయుడు / లెక్చరర్"> ఉపాధ్యాయుడు / లెక్చరర్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="ప్రొఫెసర్"> ప్రొఫెసర్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="నర్సు"> నర్సు</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="ఫార్మసిస్ట్"> ఫార్మసిస్ట్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="పోలీసు / రక్షణ రంగ ఉద్యోగి"> పోలీసు / రక్షణ రంగ ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="ప్రజా రవాణా డ్రైవర్"> ప్రజా రవాణా డ్రైవర్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="రైల్వే ఉద్యోగి"> రైల్వే ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="పోస్టల్ ఉద్యోగి"> పోస్టల్ ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="దుకాణదారు"> దుకాణదారు</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="సేల్స్ ఉద్యోగి"> సేల్స్ ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="సెక్యూరిటీ గార్డు"> సెక్యూరిటీ గార్డు</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="వాచ్‌మన్"> వాచ్‌మన్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="ప్లంబర్"> ప్లంబర్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="మెకానిక్"> మెకానిక్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="వెల్డర్"> వెల్డర్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="టైలర్"> టైలర్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="రజకుడు"> రజకుడు</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="స్వర్ణకారుడు"> స్వర్ణకారుడు</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="కుమ్మరి"> కుమ్మరి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="చేనేత కార్మికుడు"> చేనేత కార్మికుడు</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="వీధి వ్యాపారి"> వీధి వ్యాపారి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="హోటల్ ఉద్యోగి"> హోటల్ ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="చెఫ్"> చెఫ్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="బ్యూటీషియన్"> బ్యూటీషియన్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="ఇతర డ్రైవర్"> ఇతర డ్రైవర్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="జర్నలిస్ట్ / మీడియా ఉద్యోగి"> జర్నలిస్ట్ / మీడియా ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="రాజకీయ కార్యకర్త"> రాజకీయ కార్యకర్త</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="సామాజిక కార్యకర్త / NGO ఉద్యోగి"> సామాజిక కార్యకర్త / NGO ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="రియల్ ఎస్టేట్ ఏజెంట్"> రియల్ ఎస్టేట్ ఏజెంట్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="ఇన్సూరెన్స్ / ఫైనాన్స్ ఏజెంట్"> ఇన్సూరెన్స్ / ఫైనాన్స్ ఏజెంట్</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="రిటైర్డ్ ఉద్యోగి"> రిటైర్డ్ ఉద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="విద్యార్థి"> విద్యార్థి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="గృహిణి / ఇంటి బాధ్యతలు చూసుకునే వ్యక్తి"> గృహిణి / ఇంటి బాధ్యతలు చూసుకునే వ్యక్తి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="నిరుద్యోగి"> నిరుద్యోగి</label>
+          <label class="opt-label"><input type="radio" name="q18_prof" value="పెన్షనర్"> పెన్షనర్</label>
+          <label class="opt-label">
+            <input type="radio" name="q18_prof" id="q18_other_opt" value="ఇతరులు"> ఇతరులు:
+          </label>
+          <input type="text" id="q18_other_text" placeholder="ఇతర వృత్తిని రాయండి" style="display:none; margin-top:4px;" autocomplete="off">
+        </div>
       </div>
 
+      <!-- Q19 -->
       <div class="q-step" data-step="19">
-        <div class="q-title">19. మీ పూర్తి చిరునామా</div>
-        <input type="text" name="q19_address" placeholder="ఇంటి నంబర్, ల్యాండ్‌మార్క్, మొదలైనవి" autocomplete="off">
+        <span class="section-badge">భాగం – 3: వ్యక్తిగత వివరాలు</span>
+        <div class="q-title">19. మీ సామాజిక వర్గం:</div>
+        <div class="options">
+          <label class="opt-label"><input type="radio" name="q19_cat" value="OC"> OC</label>
+          <label class="opt-label"><input type="radio" name="q19_cat" value="BC"> BC</label>
+          <label class="opt-label"><input type="radio" name="q19_cat" value="SC"> SC</label>
+          <label class="opt-label"><input type="radio" name="q19_cat" value="ST"> ST</label>
+          <label class="opt-label"><input type="radio" name="q19_cat" value="ఇతరులు"> ఇతరులు</label>
+          <label class="opt-label"><input type="radio" name="q19_cat" value="చెప్పదలచుకోలేదు"> చెప్పదలచుకోలేదు</label>
+        </div>
       </div>
 
+      <!-- Q20 -->
       <div class="q-step" data-step="20">
-        <div class="q-title">20. మీ ఫోన్ నంబర్</div>
-        <input type="tel" name="q20_phone" pattern="[0-9]{10}" placeholder="10 అంకెల మొబైల్ సంఖ్య" autocomplete="off">
+        <span class="section-badge">భాగం – 3: వ్యక్తిగత వివరాలు</span>
+        <div class="q-title">20. మీ కులం / ఉపకులం:</div>
+        <input type="text" name="q20_caste" placeholder="కులం లేదా ఉపకులం రాయండి" autocomplete="off">
       </div>
 
-      <!-- Navigation Controls -->
+      <!-- Q21 -->
+      <div class="q-step" data-step="21">
+        <span class="section-badge">భాగం – 3: వ్యక్తిగత వివరాలు</span>
+        <div class="q-title">21. మీరు నివసిస్తున్న ప్రాంతం / కాలనీ పేరు:</div>
+        <input type="text" name="q21_colony" placeholder="ప్రాంతం లేదా కాలనీ పేరు రాయండి" autocomplete="off">
+      </div>
+
+      <!-- Q22 -->
+      <div class="q-step" data-step="22">
+        <span class="section-badge">భాగం – 3: వ్యక్తిగత వివరాలు</span>
+        <div class="q-title">22. మీ మొబైల్ నంబర్:</div>
+        <input type="tel" name="q22_phone" pattern="[0-9]{10}" placeholder="10 అంకెల మొబైల్ సంఖ్య" autocomplete="off">
+      </div>
+
+      <!-- నావిగేషన్ బటన్లు -->
       <div class="nav-buttons">
         <button type="button" class="btn btn-prev hidden" id="btnPrev" onclick="navigateStep(-1)">⬅️ వెనుకకు</button>
         <button type="button" class="btn btn-next" id="btnNext" onclick="navigateStep(1)">ముందుకు (Next) ➡️</button>
@@ -382,7 +530,7 @@
 <script>
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxJwFsCa-emsJruj_m7WALZ2FIYjlf9fzFtWNLA-omGE_nCj9OU090qVfn_CqUycny/exec";
 
-  const TOTAL_STEPS = 20;
+  const TOTAL_STEPS = 22;
   let currentStep = 1;
   let recorder = null;
   let recordedChunks = [];
@@ -390,7 +538,7 @@
   let timerId = null;
   let gpsLocation = { latitude: null, longitude: null, accuracy: null };
 
-  // Toggle Other Textbox for Q2
+  // Q2 Other Checkbox Toggle
   document.getElementById('q2_other_chk').addEventListener('change', function() {
     const textInput = document.getElementById('q2_other_text');
     if (this.checked) {
@@ -402,23 +550,43 @@
     }
   });
 
-  // 1. Live GPS Fetch
+  // Radio button other text toggles
+  function setupRadioOtherToggle(radioName, otherOptId, textInputId) {
+    document.querySelectorAll(`input[name="${radioName}"]`).forEach(el => {
+      el.addEventListener('change', function() {
+        const textInput = document.getElementById(textInputId);
+        if (document.getElementById(otherOptId).checked) {
+          textInput.style.display = 'block';
+          textInput.focus();
+        } else {
+          textInput.style.display = 'none';
+          textInput.value = '';
+        }
+      });
+    });
+  }
+  setupRadioOtherToggle('q11', 'q11_ind_opt', 'q11_ind_text');
+  setupRadioOtherToggle('q12', 'q12_other_opt', 'q12_other_text');
+  setupRadioOtherToggle('q13', 'q13_other_opt', 'q13_other_text');
+  setupRadioOtherToggle('q18_prof', 'q18_other_opt', 'q18_other_text');
+
+  // GPS ఫెచ్
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         gpsLocation.latitude = pos.coords.latitude;
         gpsLocation.longitude = pos.coords.longitude;
         gpsLocation.accuracy = Math.round(pos.coords.accuracy);
-        document.getElementById("gpsStatusText").innerHTML = `GPS సిద్ధంగా ఉంది (ఖచ్చితత్వం: ±${gpsLocation.accuracy}m)`;
+        document.getElementById("gpsStatusText").innerHTML = `📍 GPS ధృవీకరించబడింది (ఖచ్చితత్వం: ±${gpsLocation.accuracy}m)`;
       },
       (err) => {
-        document.getElementById("gpsStatusText").innerHTML = `GPS గుర్తించలేదు (${err.message})`;
+        document.getElementById("gpsStatusText").innerHTML = `📍 GPS లోపం: ${err.message}`;
       },
       { enableHighAccuracy: true, timeout: 12000 }
     );
   }
 
-  // 2. Start Survey Session & Audio Recording
+  // సర్వే ప్రారంభం మరియు ఆడియో రికార్డింగ్
   async function startSurveySession() {
     const surveyorEmail = document.getElementById("sEmail").value.trim();
     if (!surveyorEmail) {
@@ -432,7 +600,7 @@
 
     try {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        throw new Error("మీ బ్రౌజర్ ఆడియో రికార్డింగ్‌ను సపోర్ట్ చేయదు.");
+        throw new Error("మీ బ్రౌజర్ ఆడియో రికార్డింగ్‌కు సపోర్ట్ చేయడం లేదు.");
       }
 
       const audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -444,10 +612,11 @@
       };
 
       recorder.start(1000);
+      document.getElementById("micStatusText").innerHTML = `🎙️ ఆడియో స్థితి: మైక్రోఫోన్ విజయవంతంగా యాక్టివేట్ చేయబడింది`;
     } catch (micErr) {
-      alert("సర్వే ఆడియో రికార్డింగ్ తప్పనిసరి! మైక్రోఫోన్ అనుమతి ఇవ్వకుండా సర్వే ప్రారంభించలేరు.\n\nలోపం: " + micErr.message);
+      alert("ఆడియో రికార్డింగ్ తప్పనిసరి! మైక్రోఫోన్ అనుమతి ఇవ్వకుండా సర్వే ప్రారంభించబడదు.\n\nలోపం: " + micErr.message);
       btn.disabled = false;
-      btn.innerText = "🎙️ మైక్రోఫోన్ అనుమతించి సర్వే ప్రారంభించండి";
+      btn.innerText = "🎙️ మైక్రోఫోన్ అనుమతించి సర్వే ప్రారంభించండి (Start)";
       return;
     }
 
@@ -469,11 +638,11 @@
     updateStepUI();
   }
 
-  // 3. Step validation
+  // స్టెప్ వారీ ధృవీకరణ
   function validateCurrentStep() {
     const stepEl = document.querySelector(`.q-step[data-step="${currentStep}"]`);
 
-    // Radio button validation
+    // Radio బటన్లు
     const radios = stepEl.querySelectorAll('input[type="radio"]');
     if (radios.length > 0) {
       const checked = stepEl.querySelector('input[type="radio"]:checked');
@@ -481,21 +650,50 @@
         alert("దయచేసి ముందుకు వెళ్ళడానికి ఒక ఎంపికను ఎంచుకోండి.");
         return false;
       }
+      // ఇతరులు/స్వతంత్ర టెక్స్ట్ ధృవీకరణ
+      if (currentStep === 11 && document.getElementById('q11_ind_opt').checked) {
+        if (!document.getElementById('q11_ind_text').value.trim()) {
+          alert("దయచేసి స్వతంత్ర అభ్యర్థి పేరును నమోదు చేయండి.");
+          document.getElementById('q11_ind_text').focus();
+          return false;
+        }
+      }
+      if (currentStep === 12 && document.getElementById('q12_other_opt').checked) {
+        if (!document.getElementById('q12_other_text').value.trim()) {
+          alert("దయచేసి ఇతర అభ్యర్థి లేదా పార్టీ పేరును నమోదు చేయండి.");
+          document.getElementById('q12_other_text').focus();
+          return false;
+        }
+      }
+      if (currentStep === 13 && document.getElementById('q13_other_opt').checked) {
+        if (!document.getElementById('q13_other_text').value.trim()) {
+          alert("దయచేసి మీ ఇతర అభిప్రాయాన్ని నమోదు చేయండి.");
+          document.getElementById('q13_other_text').focus();
+          return false;
+        }
+      }
+      if (currentStep === 18 && document.getElementById('q18_other_opt').checked) {
+        if (!document.getElementById('q18_other_text').value.trim()) {
+          alert("దయచేసి మీ ఇతర వృత్తిని నమోదు చేయండి.");
+          document.getElementById('q18_other_text').focus();
+          return false;
+        }
+      }
       return true;
     }
 
-    // Checkbox validation (Q2)
+    // Checkboxes (Q2)
     const checkboxes = stepEl.querySelectorAll('input[type="checkbox"]');
     if (checkboxes.length > 0) {
       const checked = stepEl.querySelectorAll('input[type="checkbox"]:checked');
       if (checked.length === 0) {
-        alert("దయచేసి కనీసం ఒక ఎంపికను ఎంచుకోండి.");
+        alert("దయచేసి కనీసం ఒక సమస్యను ఎంచుకోండి.");
         return false;
       }
       if (document.getElementById('q2_other_chk').checked) {
         const otherVal = document.getElementById('q2_other_text').value.trim();
         if (!otherVal) {
-          alert("దయచేసి 'Other' కింద మీ సమస్యను టైప్ చేయండి.");
+          alert("దయచేసి ఇతర సమస్యను నమోదు చేయండి.");
           document.getElementById('q2_other_text').focus();
           return false;
         }
@@ -503,21 +701,19 @@
       return true;
     }
 
-    // Text & phone validation
+    // Free Text Inputs
     const textInput = stepEl.querySelector('input[type="text"], input[type="tel"]');
     if (textInput) {
-      if (textInput.name === "q18_subcaste") return true; // Optional
-
       const val = textInput.value.trim();
       if (!val) {
-        alert("దయచేసి ఈ సమాచారాన్ని నమోదు చేయండి.");
+        alert("దయచేసి ఈ ఫీల్డ్‌లో సమాధానాన్ని నమోదు చేయండి.");
         textInput.focus();
         return false;
       }
 
-      if (textInput.name === "q20_phone") {
+      if (textInput.name === "q22_phone") {
         if (!/^[0-9]{10}$/.test(val)) {
-          alert("దయచేసి సరైన 10 అంకెల మొబైల్ సంఖ్యను నమోదు చేయండి.");
+          alert("దయచేసి సరైన 10 అంకెల మొబైల్ నంబర్‌ను నమోదు చేయండి.");
           textInput.focus();
           return false;
         }
@@ -527,7 +723,7 @@
     return true;
   }
 
-  // 4. Wizard Step Navigation
+  // విండో నావిగేషన్
   function navigateStep(direction) {
     if (direction === 1) {
       if (!validateCurrentStep()) return;
@@ -576,12 +772,12 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // 5. Submit Execution
+  // సర్వే సబ్మిట్
   function submitFinalSurvey() {
     if (!validateCurrentStep()) return;
 
     if (!recorder || recorder.state === "inactive") {
-      alert("ఆడియో రికార్డింగ్ ఆగిపోయింది. సర్వేను ఆడియో లేకుండా సమర్పించలేరు.");
+      alert("ఆడియో రికార్డింగ్ ఆగిపోయింది. సర్వేను సమర్పించలేము.");
       return;
     }
 
@@ -594,14 +790,13 @@
     const endTime = new Date();
     const duration = Math.round((endTime - surveyStartTime) / 1000);
 
-    // Collect Q2 Checkboxes
+    // Q2 ఆప్షన్ల కలెక్షన్
     const q2Checked = [];
     document.querySelectorAll('input[name="q2"]:checked').forEach(el => {
-      q2Checked.push(el.value);
+      if (el.value !== "ఇతర సమస్యలు") q2Checked.push(el.value);
     });
     if (document.getElementById('q2_other_chk').checked) {
-      const otherVal = document.getElementById('q2_other_text').value.trim();
-      q2Checked.push("Other: " + otherVal);
+      q2Checked.push("ఇతర సమస్యలు: " + document.getElementById('q2_other_text').value.trim());
     }
 
     recorder.onstop = () => {
@@ -618,7 +813,7 @@
     if (timerId) clearInterval(timerId);
   }
 
-  // 6. Cross-domain HTTP POST to Apps Script
+  // గూగుల్ షీట్‌కు డేటా పంపడం
   function sendToServer(audioBase64, audioType, endTime, duration, q2Checked) {
     const form = document.getElementById("mainForm");
     const formData = new FormData(form);
@@ -628,6 +823,20 @@
       if (key !== "q2") {
         payload[key] = val;
       }
+    }
+
+    // ప్రత్యేక Other/Free text ఫీల్డ్‌ల సర్దుబాటు
+    if (payload.q11 === "స్వతంత్ర అభ్యర్థి") {
+      payload.q11 = "స్వతంత్ర అభ్యర్థి: " + document.getElementById('q11_ind_text').value.trim();
+    }
+    if (payload.q12 === "ఇతర అభ్యర్థి / పార్టీ") {
+      payload.q12 = "ఇతర అభ్యర్థి / పార్టీ: " + document.getElementById('q12_other_text').value.trim();
+    }
+    if (payload.q13 === "ఇతర అభిప్రాయం") {
+      payload.q13 = "ఇతర అభిప్రాయం: " + document.getElementById('q13_other_text').value.trim();
+    }
+    if (payload.q18_prof === "ఇతరులు") {
+      payload.q18_prof = "ఇతరులు: " + document.getElementById('q18_other_text').value.trim();
     }
 
     payload.q2 = q2Checked.join(", ");
@@ -654,7 +863,7 @@
       res.classList.remove("hidden");
       res.innerHTML = `
         <h2 style="margin: 0 0 10px;">🎉 సర్వే విజయవంతంగా నమోదైంది!</h2>
-        <p>ధన్యవాదాలు. సమాధానాలు మరియు ఆడియో రికార్డింగ్ గూగుల్ షీట్‌లో భద్రపరచబడ్డాయి.</p>
+        <p>ధన్యవాదాలు. వార్డ్ నెం. 59 ప్రజాభిప్రాయ సమాధానాలు మరియు ఆడియో రికార్డింగ్ భద్రపరచబడ్డాయి.</p>
         <button class="btn btn-green" onclick="location.reload()" style="max-width:280px; margin:16px auto 0;">మరొక సర్వే ప్రారంభించండి</button>
       `;
       window.scrollTo({ top: 0, behavior: "smooth" });

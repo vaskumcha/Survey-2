@@ -1,34 +1,39 @@
 <!DOCTYPE html>
-<html lang="te">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>GVMC Ward 59 – సర్వేయర్ ప్రగతి డాష్‌బోర్డ్ (Manager Dashboard)</title>
+  <title>GVMC Ward 59 – Surveyor Performance Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
     :root {
       --primary: #1a73e8;
+      --primary-hover: #1557b0;
       --bg: #f8f9fa;
       --card: #ffffff;
       --text: #1e293b;
+      --muted: #64748b;
       --border: #cbd5e1;
+      --success: #16a34a;
     }
-    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Telugu", sans-serif; }
-    body { background-color: var(--bg); color: var(--text); margin: 0; padding: 12px; }
-    .container { max-width: 850px; margin: 0 auto; }
+    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); margin: 0; padding: 14px; }
+    .container { max-width: 900px; margin: 0 auto; }
 
+    /* Header */
     .header-card {
       background: var(--card);
       border-radius: 12px;
-      padding: 20px;
+      padding: 22px;
       margin-bottom: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       border-top: 5px solid var(--primary);
       text-align: center;
     }
-    h1 { font-size: 1.3rem; margin: 0 0 6px; color: #1e3a8a; }
-    .sub-head { color: #64748b; font-size: 0.9rem; margin-bottom: 14px; }
+    h1 { font-size: 1.4rem; margin: 0 0 6px; color: #1e3a8a; }
+    .sub-head { color: var(--muted); font-size: 0.95rem; margin-bottom: 8px; }
+    .meta-time { font-size: 0.8rem; color: var(--muted); }
 
-    /* గణాంకాల కార్డులు */
+    /* Metric Cards */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -43,25 +48,73 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.06);
       border: 1px solid var(--border);
     }
-    .stat-num { font-size: 1.8rem; font-weight: bold; color: var(--primary); margin: 4px 0; }
-    .stat-label { font-size: 0.85rem; color: #64748b; font-weight: 600; }
+    .stat-num { font-size: 1.9rem; font-weight: 700; color: var(--primary); margin: 4px 0; }
+    .stat-label { font-size: 0.85rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
 
-    /* ఫిల్టర్ మరియు సెర్చ్ బార్ */
+    /* Filters Card */
     .controls-card {
       background: var(--card);
       border-radius: 10px;
-      padding: 14px;
+      padding: 16px;
       margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .filter-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .preset-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .btn-preset {
+      padding: 7px 14px;
+      font-size: 0.85rem;
+      border: 1px solid var(--border);
+      background: #f1f5f9;
+      color: var(--text);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .btn-preset.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+    .date-picker-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .date-picker-wrap label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    input[type="date"] {
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      outline: none;
+      color: var(--text);
+    }
+    .search-row {
+      display: flex;
+      gap: 10px;
     }
     .search-input {
       flex: 1;
-      min-width: 220px;
       padding: 10px 14px;
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -79,18 +132,18 @@
       padding: 10px 18px;
       font-weight: bold;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
     }
-    .btn-refresh:hover { background: #1557b0; }
+    .btn-refresh:hover { background: var(--primary-hover); }
 
-    /* పట్టిక (Table) స్టైల్స్ */
+    /* Table */
     .table-card {
       background: var(--card);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       border: 1px solid var(--border);
     }
     .table-container {
@@ -105,12 +158,15 @@
     th {
       background: #f1f5f9;
       color: #334155;
-      padding: 12px 14px;
+      padding: 12px 16px;
       font-weight: 600;
       border-bottom: 2px solid var(--border);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     td {
-      padding: 12px 14px;
+      padding: 12px 16px;
       border-bottom: 1px solid #e2e8f0;
       color: #1e293b;
     }
@@ -130,13 +186,13 @@
     .rank-1 { background: #fef08a; color: #854d0e; } /* Gold */
     .rank-2 { background: #e2e8f0; color: #475569; } /* Silver */
     .rank-3 { background: #fed7aa; color: #9a3412; } /* Bronze */
-    .rank-other { background: #f1f5f9; color: #64748b; }
+    .rank-other { background: #f1f5f9; color: var(--muted); }
 
     .count-badge {
       background: #dcfce7;
       color: #166534;
       font-weight: bold;
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: 20px;
       display: inline-block;
     }
@@ -144,14 +200,14 @@
     .footer-note {
       text-align: center;
       font-size: 0.8rem;
-      color: #64748b;
-      margin-top: 16px;
+      color: var(--muted);
+      margin-top: 18px;
     }
 
     .loading-spinner {
       text-align: center;
       padding: 30px;
-      color: #64748b;
+      color: var(--muted);
       font-weight: bold;
     }
   </style>
@@ -160,50 +216,69 @@
 
 <div class="container">
 
-  <!-- హెడర్ -->
+  <!-- Header -->
   <div class="header-card">
-    <h1>📊 GVMC Ward 59 – సర్వేయర్ ప్రగతి డాష్‌బోర్డ్</h1>
-    <div class="sub-head">Pulse Today ప్రజాభిప్రాయ సర్వే – 2026 నివేదిక</div>
-    <div style="font-size: 0.8rem; color: #64748b;">
-      చివరిగా అప్‌డేట్ చేయబడిన సమయం: <span id="lastUpdatedText">లోడ్ అవుతోంది...</span>
-    </div>
+    <h1>Surveyor Performance Dashboard</h1>
+    <div class="sub-head">GVMC Ward 59 Election Survey 2026 • Pulse Today</div>
+    <div class="meta-time">Last Refreshed: <span id="lastUpdatedText">Loading...</span></div>
   </div>
 
-  <!-- సారాంశం గణాంకాలు -->
+  <!-- Metric Overview Cards -->
   <div class="stats-grid">
     <div class="stat-box">
-      <div class="stat-label">మొత్తం నమోదైన సర్వేలు (Total Submissions)</div>
+      <div class="stat-label">Total Submissions</div>
       <div class="stat-num" id="totalSubmissions">0</div>
     </div>
     <div class="stat-box">
-      <div class="stat-label">పాల్గొన్న సర్వేయర్లు (Active Surveyors)</div>
-      <div class="stat-num" id="activeSurveyors" style="color: #16a34a;">0</div>
+      <div class="stat-label">Active Surveyors</div>
+      <div class="stat-num" id="activeSurveyors" style="color: var(--success);">0</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Filtered Date Scope</div>
+      <div class="stat-num" id="selectedScopeDisplay" style="font-size: 1.25rem; margin-top: 12px;">All Time</div>
     </div>
   </div>
 
-  <!-- సెర్చ్ మరియు రీఫ్రెష్ బటన్ -->
+  <!-- Filter & Controls -->
   <div class="controls-card">
-    <input type="text" id="searchInput" class="search-input" placeholder="🔍 సర్వేయర్ ఈమెయిల్ ద్వారా వెతకండి..." oninput="filterTable()">
-    <button class="btn-refresh" onclick="loadDashboardData()">
-      🔄 రీఫ్రెష్ చేయండి
-    </button>
+    <!-- Date Filter Bar -->
+    <div class="filter-row">
+      <div class="preset-group">
+        <button class="btn-preset active" id="btnAll" onclick="setPreset('all')">All Time</button>
+        <button class="btn-preset" id="btnToday" onclick="setPreset('today')">Today</button>
+        <button class="btn-preset" id="btnYesterday" onclick="setPreset('yesterday')">Yesterday</button>
+      </div>
+
+      <div class="date-picker-wrap">
+        <label for="customDatePicker">Select Date:</label>
+        <input type="date" id="customDatePicker" onchange="handleCustomDateChange()">
+      </div>
+    </div>
+
+    <!-- Search & Reload Bar -->
+    <div class="search-row">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search by surveyor email..." oninput="applyFilters()">
+      <button class="btn-refresh" onclick="loadDashboardData()">
+        Refresh
+      </button>
+    </div>
   </div>
 
-  <!-- వివరాల పట్టిక -->
+  <!-- Leaderboard Table -->
   <div class="table-card">
     <div class="table-container">
       <table id="surveyorTable">
         <thead>
           <tr>
-            <th style="width: 70px; text-align: center;">ర్యాంక్</th>
-            <th>సర్వేయర్ ఈమెయిల్ (Surveyor Email)</th>
-            <th style="text-align: center;">సర్వేల సంఖ్య (Count)</th>
-            <th>చివరి సబ్మిషన్ సమయం</th>
+            <th style="width: 70px; text-align: center;">Rank</th>
+            <th>Surveyor Email</th>
+            <th style="text-align: center;">Submission Count</th>
+            <th>Latest Submission (IST)</th>
           </tr>
         </thead>
         <tbody id="tableBody">
           <tr>
-            <td colspan="4" class="loading-spinner">డేటా సేకరించబడుతోంది... దయచేసి వేచి ఉండండి ⏳</td>
+            <td colspan="4" class="loading-spinner">Loading submission data... Please wait</td>
           </tr>
         </tbody>
       </table>
@@ -211,16 +286,18 @@
   </div>
 
   <div class="footer-note">
-    Pulse Today Analytics • GVMC Ward 59 Election Survey 2026
+    Pulse Today Analytics • GVMC Ward 59 Opinion Survey Portal
   </div>
 
 </div>
 
 <script>
-  // మీ Apps Script వెబ్ యాప్ ఎగ్జిక్యూట్ లింక్:
+  // Your Google Apps Script deployment URL
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxJwFsCa-emsJruj_m7WALZ2FIYjlf9fzFtWNLA-omGE_nCj9OU090qVfn_CqUycny/exec";
 
-  let allSurveyors = [];
+  let rawSubmissions = [];
+  let activeFilterMode = "all"; // "all" | "today" | "yesterday" | "custom"
+  let customSelectedDate = ""; // YYYY-MM-DD
 
   window.addEventListener('DOMContentLoaded', () => {
     loadDashboardData();
@@ -228,25 +305,120 @@
 
   async function loadDashboardData() {
     const tableBody = document.getElementById("tableBody");
-    tableBody.innerHTML = `<tr><td colspan="4" class="loading-spinner">డేటా సేకరించబడుతోంది... దయచేసి వేచి ఉండండి ⏳</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="4" class="loading-spinner">Fetching live records... Please wait</td></tr>`;
 
     try {
-      // action=getSummary పారామీటర్‌తో API ని కాల్ చేయడం
       const response = await fetch(`${APPS_SCRIPT_URL}?action=getSummary`);
       const data = await response.json();
 
       if (data.status === "success") {
-        document.getElementById("totalSubmissions").innerText = data.totalSubmissions;
-        document.getElementById("activeSurveyors").innerText = data.uniqueSurveyors;
-        document.getElementById("lastUpdatedText").innerText = data.lastUpdated || new Date().toLocaleString("en-IN");
-        allSurveyors = data.surveyors || [];
-        renderTable(allSurveyors);
+        rawSubmissions = data.records || [];
+        document.getElementById("lastUpdatedText").innerText = new Date().toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", hour: '2-digit', minute:'2-digit', second:'2-digit', hour12: true });
+        applyFilters();
       } else {
-        tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#dc2626; padding:20px;">లోపం ఏర్పడింది: ${data.message}</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#dc2626; padding:20px;">Error: ${data.message}</td></tr>`;
       }
     } catch (err) {
-      tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#dc2626; padding:20px;">డేటా లోడ్ చేయడంలో విఫలమైంది (${err.message})</td></tr>`;
+      tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#dc2626; padding:20px;">Failed to load data: ${err.message}</td></tr>`;
     }
+  }
+
+  // Convert an ISO timestamp to YYYY-MM-DD in IST (Asia/Kolkata)
+  function getISTDateString(isoStr) {
+    const date = new Date(isoStr);
+    const options = { timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit" };
+    const parts = new Intl.DateTimeFormat("en-CA", options).formatToParts(date);
+    const y = parts.find(p => p.type === "year").value;
+    const m = parts.find(p => p.type === "month").value;
+    const d = parts.find(p => p.type === "day").value;
+    return `${y}-${m}-${d}`;
+  }
+
+  function getTodayIST() {
+    return getISTDateString(new Date().toISOString());
+  }
+
+  function getYesterdayIST() {
+    const d = new Date();
+    d.setDate(d.getDate() - 1);
+    return getISTDateString(d.toISOString());
+  }
+
+  function setPreset(mode) {
+    activeFilterMode = mode;
+    document.querySelectorAll('.btn-preset').forEach(btn => btn.classList.remove('active'));
+    document.getElementById("customDatePicker").value = "";
+
+    if (mode === "all") document.getElementById("btnAll").classList.add("active");
+    if (mode === "today") document.getElementById("btnToday").classList.add("active");
+    if (mode === "yesterday") document.getElementById("btnYesterday").classList.add("active");
+
+    applyFilters();
+  }
+
+  function handleCustomDateChange() {
+    const val = document.getElementById("customDatePicker").value;
+    if (val) {
+      activeFilterMode = "custom";
+      customSelectedDate = val;
+      document.querySelectorAll('.btn-preset').forEach(btn => btn.classList.remove('active'));
+      applyFilters();
+    }
+  }
+
+  function applyFilters() {
+    let filteredRecords = [];
+    const todayStr = getTodayIST();
+    const yesterdayStr = getYesterdayIST();
+
+    // 1. Filter by Date
+    if (activeFilterMode === "all") {
+      filteredRecords = rawSubmissions;
+      document.getElementById("selectedScopeDisplay").innerText = "All Time";
+    } else if (activeFilterMode === "today") {
+      filteredRecords = rawSubmissions.filter(r => getISTDateString(r.timestamp) === todayStr);
+      document.getElementById("selectedScopeDisplay").innerText = "Today";
+    } else if (activeFilterMode === "yesterday") {
+      filteredRecords = rawSubmissions.filter(r => getISTDateString(r.timestamp) === yesterdayStr);
+      document.getElementById("selectedScopeDisplay").innerText = "Yesterday";
+    } else if (activeFilterMode === "custom") {
+      filteredRecords = rawSubmissions.filter(r => getISTDateString(r.timestamp) === customSelectedDate);
+      document.getElementById("selectedScopeDisplay").innerText = customSelectedDate;
+    }
+
+    // 2. Aggregate counts per surveyor
+    const map = {};
+    filteredRecords.forEach(r => {
+      const email = r.email.toLowerCase();
+      if (!map[email]) {
+        map[email] = {
+          email: email,
+          count: 0,
+          latestDate: r.timestamp
+        };
+      }
+      map[email].count += 1;
+      if (new Date(r.timestamp) > new Date(map[email].latestDate)) {
+        map[email].latestDate = r.timestamp;
+      }
+    });
+
+    let surveyorList = Object.values(map);
+
+    // Sort descending by count
+    surveyorList.sort((a, b) => b.count - a.count);
+
+    // 3. Filter by Search Query
+    const searchVal = document.getElementById("searchInput").value.trim().toLowerCase();
+    if (searchVal) {
+      surveyorList = surveyorList.filter(s => s.email.includes(searchVal));
+    }
+
+    // Update Overview Metrics
+    document.getElementById("totalSubmissions").innerText = filteredRecords.length;
+    document.getElementById("activeSurveyors").innerText = Object.keys(map).length;
+
+    renderTable(surveyorList);
   }
 
   function renderTable(list) {
@@ -254,7 +426,7 @@
     tableBody.innerHTML = "";
 
     if (list.length === 0) {
-      tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:20px; color:#64748b;">ఎటువంటి రికార్డులు కనుగొనబడలేదు.</td></tr>`;
+      tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:24px; color:var(--muted);">No submissions found for the selected scope.</td></tr>`;
       return;
     }
 
@@ -265,21 +437,25 @@
       else if (rank === 2) badgeClass = "rank-2";
       else if (rank === 3) badgeClass = "rank-3";
 
+      const formattedTime = new Date(s.latestDate).toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true
+      });
+
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td style="text-align: center;"><span class="rank-badge ${badgeClass}">${rank}</span></td>
         <td><strong>${escapeHtml(s.email)}</strong></td>
         <td style="text-align: center;"><span class="count-badge">${s.count}</span></td>
-        <td style="color:#64748b; font-size:0.85rem;">${s.lastSubmission}</td>
+        <td style="color:var(--muted); font-size:0.85rem;">${formattedTime}</td>
       `;
       tableBody.appendChild(tr);
     });
-  }
-
-  function filterTable() {
-    const query = document.getElementById("searchInput").value.trim().toLowerCase();
-    const filtered = allSurveyors.filter(s => s.email.toLowerCase().includes(query));
-    renderTable(filtered);
   }
 
   function escapeHtml(text) {

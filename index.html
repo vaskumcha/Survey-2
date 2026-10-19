@@ -343,10 +343,10 @@
         </div>
       </div>
 
-      <!-- Q12 -->
+      <!-- Q12 (Updated) -->
       <div class="q-step" data-step="12">
         <span class="section-badge">భాగం – 2: రాబోయే ఎన్నికలపై ప్రజాభిప్రాయం</span>
-        <div class="q-title">12. రాబోయే GVMC ఎన్నికల తర్వాత విశాఖపట్నం మేయర్‌గా ఎవరు ఎన్నికయ్యే అవకాశం ఉందని మీరు భావిస్తున్నారు?</div>
+        <div class="q-title">12. రాబోయే GVMC ఎన్నికల్లో విశాఖపట్నం మేయర్‌గా ఎవరు ఎన్నికయ్యే అవకాశం ఉందని మీరు భావిస్తున్నారు?</div>
         <div class="options">
           <label class="opt-label"><input type="radio" name="q12" value="ముక్కా శ్రావణి – TDP కూటమి అభ్యర్థి"> ముక్కా శ్రావణి – TDP కూటమి అభ్యర్థి</label>
           <label class="opt-label"><input type="radio" name="q12" value="వరుదు కల్యాణి – YSRCP అభ్యర్థి"> వరుదు కల్యాణి – YSRCP అభ్యర్థి</label>
@@ -650,7 +650,6 @@
         alert("దయచేసి ముందుకు వెళ్ళడానికి ఒక ఎంపికను ఎంచుకోండి.");
         return false;
       }
-      // ఇతరులు/స్వతంత్ర టెక్స్ట్ ధృవీకరణ
       if (currentStep === 11 && document.getElementById('q11_ind_opt').checked) {
         if (!document.getElementById('q11_ind_text').value.trim()) {
           alert("దయచేసి స్వతంత్ర అభ్యర్థి పేరును నమోదు చేయండి.");
@@ -790,7 +789,6 @@
     const endTime = new Date();
     const duration = Math.round((endTime - surveyStartTime) / 1000);
 
-    // Q2 ఆప్షన్ల కలెక్షన్
     const q2Checked = [];
     document.querySelectorAll('input[name="q2"]:checked').forEach(el => {
       if (el.value !== "ఇతర సమస్యలు") q2Checked.push(el.value);
@@ -825,7 +823,6 @@
       }
     }
 
-    // ప్రత్యేక Other/Free text ఫీల్డ్‌ల సర్దుబాటు
     if (payload.q11 === "స్వతంత్ర అభ్యర్థి") {
       payload.q11 = "స్వతంత్ర అభ్యర్థి: " + document.getElementById('q11_ind_text').value.trim();
     }

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <title>GVMC Ward 59 – సర్వేయర్ ప్రగతి డాష్‌బోర్డ్ (Manager Dashboard)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    :root {
+      --primary: #1a73e8;
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #1e293b;
+      --border: #cbd5e1;
+    }
+    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Telugu", sans-serif; }
+    body { background-color: var(--bg); color: var(--text); margin: 0; padding: 12px; }
+    .container { max-width: 850px; margin: 0 auto; }
+
+    .header-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-top: 5px solid var(--primary);
+      text-align: center;
+    }
+    h1 { font-size: 1.3rem; margin: 0 0 6px; color: #1e3a8a; }
+    .sub-head { color: #64748b; font-size: 0.9rem; margin-bottom: 14px; }
+
+    /* గణాంకాల కార్డులు */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .stat-box {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+    .stat-num { font-size: 1.8rem; font-weight: bold; color: var(--primary); margin: 4px 0; }
+    .stat-label { font-size: 0.85rem; color: #64748b; font-weight: 600; }
+
+    /* ఫిల్టర్ మరియు సెర్చ్ బార్ */
+    .controls-card {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .search-input {
+      flex: 1;
+      min-width: 220px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+    .btn-refresh {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-refresh:hover { background: #1557b0; }
+
+    /* పట్టిక (Table) స్టైల్స్ */
+    .table-card {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+    }
+    .table-container {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    th {
+      background: #f1f5f9;
+      color: #334155;
+      padding: 12px 14px;
+      font-weight: 600;
+      border-bottom: 2px solid var(--border);
+    }
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #1e293b;
+    }
+    tr:nth-child(even) { background-color: #f8fafc; }
+    tr:hover { background-color: #f1f5f9; }
+
+    .rank-badge {
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+      line-height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+    .rank-1 { background: #fef08a; color: #854d0e; } /* Gold */
+    .rank-2 { background: #e2e8f0; color: #475569; } /* Silver */
+    .rank-3 { background: #fed7aa; color: #9a3412; } /* Bronze */
+    .rank-other { background: #f1f5f9; color: #64748b; }
+
+    .count-badge {
+      background: #dcfce7;
+      color: #166534;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 16px;
+    }
+
+    .loading-spinner {
+      text-align: center;
+      padding: 30px;
+      color: #64748b;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- హెడర్ -->
+  <div class="header-card">
+    <h1>📊 GVMC Ward 59 – సర్వేయర్ ప్రగతి డాష్‌బోర్డ్</h1>
+    <div class="sub-head">Pulse Today ప్రజాభిప్రాయ సర్వే – 2026 నివేదిక</div>
+    <div style="font-size: 0.8rem; color: #64748b;">
+      చివరిగా అప్‌డేట్ చేయబడిన సమయం: <span id="lastUpdatedText">లోడ్ అవుతోంది...</span>
+    </div>
+  </div>
+
+  <!-- సారాంశం గణాంకాలు -->
+  <div class="stats-grid">
+    <div class="stat-box">
+      <div class="stat-label">మొత్తం నమోదైన సర్వేలు (Total Submissions)</div>
+      <div class="stat-num" id="totalSubmissions">0</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">పాల్గొన్న సర్వేయర్లు (Active Surveyors)</div>
+      <div class="stat-num" id="activeSurveyors" style="color: #16a34a;">0</div>
+    </div>
+  </div>
+
+  <!-- సెర్చ్ మరియు రీఫ్రెష్ బటన్ -->
+  <div class="controls-card">
+    <input type="text" id="searchInput" class="search-input" placeholder="🔍 సర్వేయర్ ఈమెయిల్ ద్వారా వెతకండి..." oninput="filterTable()">
+    <button class="btn-refresh" onclick="loadDashboardData()">
+      🔄 రీఫ్రెష్ చేయండి
+    </button>
+  </div>
+
+  <!-- వివరాల పట్టిక -->
+  <div class="table-card">
+    <div class="table-container">
+      <table id="surveyorTable">
+        <thead>
+          <tr>
+            <th style="width: 70px; text-align: center;">ర్యాంక్</th>
+            <th>సర్వేయర్ ఈమెయిల్ (Surveyor Email)</th>
+            <th style="text-align: center;">సర్వేల సంఖ్య (Count)</th>
+            <th>చివరి సబ్మిషన్ సమయం</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr>
+            <td colspan="4" class="loading-spinner">డేటా సేకరించబడుతోంది... దయచేసి వేచి ఉండండి ⏳</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Pulse Today Analytics • GVMC Ward 59 Election Survey 2026
+  </div>
+
+</div>
+
+<script>
+  // మీ Apps Script వెబ్ యాప్ ఎగ్జిక్యూట్ లింక్:
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxJwFsCa-emsJruj_m7WALZ2FIYjlf9fzFtWNLA-omGE_nCj9OU090qVfn_CqUycny/exec";
+
+  let allSurveyors = [];
+
+  window.addEventListener('DOMContentLoaded', () => {
+    loadDashboardData();
+  });
+
+  async function loadDashboardData() {
+    const tableBody = document.getElementById("tableBody");
+    tableBody.innerHTML = `<tr><td colspan="4" class="loading-spinner">డేటా సేకరించబడుతోంది... దయచేసి వేచి ఉండండి ⏳</td></tr>`;
+
+    try {
+      // action=getSummary పారామీటర్‌తో API ని కాల్ చేయడం
+      const response = await fetch(`${APPS_SCRIPT_URL}?action=getSummary`);
+      const data = await response.json();
+
+      if (data.status === "success") {
+        document.getElementById("totalSubmissions").innerText = data.totalSubmissions;
+        document.getElementById("activeSurveyors").innerText = data.uniqueSurveyors;
+        document.getElementById("lastUpdatedText").innerText = data.lastUpdated || new Date().toLocaleString("en-IN");
+        allSurveyors = data.surveyors || [];
+        renderTable(allSurveyors);
+      } else {
+        tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#dc2626; padding:20px;">లోపం ఏర్పడింది: ${data.message}</td></tr>`;
+      }
+    } catch (err) {
+      tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#dc2626; padding:20px;">డేటా లోడ్ చేయడంలో విఫలమైంది (${err.message})</td></tr>`;
+    }
+  }
+
+  function renderTable(list) {
+    const tableBody = document.getElementById("tableBody");
+    tableBody.innerHTML = "";
+
+    if (list.length === 0) {
+      tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:20px; color:#64748b;">ఎటువంటి రికార్డులు కనుగొనబడలేదు.</td></tr>`;
+      return;
+    }
+
+    list.forEach((s, idx) => {
+      const rank = idx + 1;
+      let badgeClass = "rank-other";
+      if (rank === 1) badgeClass = "rank-1";
+      else if (rank === 2) badgeClass = "rank-2";
+      else if (rank === 3) badgeClass = "rank-3";
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td style="text-align: center;"><span class="rank-badge ${badgeClass}">${rank}</span></td>
+        <td><strong>${escapeHtml(s.email)}</strong></td>
+        <td style="text-align: center;"><span class="count-badge">${s.count}</span></td>
+        <td style="color:#64748b; font-size:0.85rem;">${s.lastSubmission}</td>
+      `;
+      tableBody.appendChild(tr);
+    });
+  }
+
+  function filterTable() {
+    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+    const filtered = allSurveyors.filter(s => s.email.toLowerCase().includes(query));
+    renderTable(filtered);
+  }
+
+  function escapeHtml(text) {
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+  }
+</script>
+</body>
+</html>

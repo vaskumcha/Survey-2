@@ -161,7 +161,7 @@
 
 <div class="container">
 
-  <!-- Welcome / Pre-Survey Screen -->
+  <!-- ప్రారంభ స్క్రీన్ / సర్వేయర్ వివరాలు -->
   <div class="card" id="startScreen" style="border-top-color: #16a34a;">
     <h2 style="margin-top:0; font-size:1.25rem; color:#1e3a8a; line-height: 1.4; text-align: center;">
       గ్రేటర్ విశాఖ మున్సిపల్ కార్పొరేషన్ (GVMC)<br>
@@ -193,13 +193,13 @@
     </button>
   </div>
 
-  <!-- Realtime Recording Sticky Bar -->
+  <!-- ఆడియో రికార్డింగ్ & GPS లైవ్ బార్ -->
   <div id="recBar" class="status-bar hidden">
     <div><span class="pulse"></span> <strong>ఆడియో రికార్డ్ అవుతోంది...</strong> (<span id="timer">00:00</span>)</div>
     <div id="gpsLive">GPS: ఆన్</div>
   </div>
 
-  <!-- Step-by-Step Questionnaire Form -->
+  <!-- ప్రశ్నల ఫారమ్ (ఒక్కొక్కటిగా) -->
   <form id="mainForm" class="hidden" onsubmit="event.preventDefault()">
     <div class="card">
       <div class="progress-wrapper">
@@ -324,16 +324,17 @@
         </div>
       </div>
 
-      <!-- Q8 -->
+      <!-- Q8 (Updated Options) -->
       <div class="q-step" data-step="8">
         <span class="section-badge">భాగం – 2: రాబోయే ఎన్నికలపై ప్రజాభిప్రాయం</span>
         <div class="q-title">8. రాబోయే GVMC ఎన్నికల్లో కార్పొరేటర్‌గా ఈ క్రింది వారిలో మీరు ఎవరిని ఎన్నుకోవడానికి ఎక్కువ అవకాశం ఉంది?</div>
         <div class="options">
-          <label class="opt-label"><input type="radio" name="q8" value="యడ్ల నళిని – TDP కూటమి అభ్యర్థి"> యడ్ల నళిని – TDP కూటమి అభ్యర్థి</label>
-          <label class="opt-label"><input type="radio" name="q8" value="అల్లు వెంకట సత్యశ్రీ – YSRCP అభ్యర్థి"> అల్లు వెంకట సత్యశ్రీ – YSRCP అభ్యర్థి</label>
-          <label class="opt-label"><input type="radio" name="q8" value="చెప్పలేను / ఇంకా నిర్ణయించుకోలేదు"> చెప్పలేను / ఇంకా నిర్ణయించుకోలేదు</label>
-          <label class="opt-label"><input type="radio" name="q8" id="q8_ind_opt" value="స్వతంత్ర అభ్యర్థి"> స్వతంత్ర అభ్యర్థి:</label>
-          <input type="text" id="q8_ind_text" placeholder="స్వతంత్ర అభ్యర్థి పేరు రాయండి" style="display:none; margin-top:4px;" autocomplete="off">
+          <label class="opt-label"><input type="radio" name="q8" value="బోడసింగి విజయలక్ష్మి - TDP - జనసేన - బీజేపీ ఉమ్మడి అభ్యర్థి (శ్రీధర్ గారి సతీమణి)"> బోడసింగి విజయలక్ష్మి - TDP - జనసేన - బీజేపీ ఉమ్మడి అభ్యర్థి (శ్రీధర్ గారి సతీమణి)</label>
+          <label class="opt-label"><input type="radio" name="q8" value="అల్లు వెంకట సత్య శ్రీ - YSRCP అభ్యర్థి (అల్లు శంకర్రావు గారి సతీమణి)"> అల్లు వెంకట సత్య శ్రీ - YSRCP అభ్యర్థి (అల్లు శంకర్రావు గారి సతీమణి)</label>
+          <label class="opt-label"><input type="radio" name="q8" value="యడ్ల నళిని - ఇండిపెండెంట్ (దాస్ గారి కుటుంబ సభ్యురాలు)"> యడ్ల నళిని - ఇండిపెండెంట్ (దాస్ గారి కుటుంబ సభ్యురాలు)</label>
+          <label class="opt-label"><input type="radio" name="q8" id="q8_ind_opt" value="ఇతర ఇండిపెండెంట్ అభ్యర్థి ఎవరైనా"> ఇతర ఇండిపెండెంట్ అభ్యర్థి ఎవరైనా:</label>
+          <input type="text" id="q8_ind_text" placeholder="ఇతర అభ్యర్థి పేరు రాయండి" style="display:none; margin-top:4px;" autocomplete="off">
+          <label class="opt-label"><input type="radio" name="q8" value="NOTA"> NOTA</label>
         </div>
       </div>
 
@@ -677,7 +678,7 @@
       }
       if (currentStep === 8 && document.getElementById('q8_ind_opt').checked) {
         if (!document.getElementById('q8_ind_text').value.trim()) {
-          alert("దయచేసి స్వతంత్ర అభ్యర్థి పేరును నమోదు చేయండి.");
+          alert("దయచేసి ఇతర ఇండిపెండెంట్ అభ్యర్థి పేరును నమోదు చేయండి.");
           document.getElementById('q8_ind_text').focus();
           return false;
         }
@@ -848,8 +849,8 @@
       }
     }
 
-    if (payload.q8 === "స్వతంత్ర అభ్యర్థి") {
-      payload.q8 = "స్వతంత్ర అభ్యర్థి: " + document.getElementById('q8_ind_text').value.trim();
+    if (payload.q8 === "ఇతర ఇండిపెండెంట్ అభ్యర్థి ఎవరైనా") {
+      payload.q8 = "ఇతర ఇండిపెండెంట్ అభ్యర్థి ఎవరైనా: " + document.getElementById('q8_ind_text').value.trim();
     }
     if (payload.q9 === "ఇతర అభ్యర్థి / పార్టీ") {
       payload.q9 = "ఇతర అభ్యర్థి / పార్టీ: " + document.getElementById('q9_other_text').value.trim();
